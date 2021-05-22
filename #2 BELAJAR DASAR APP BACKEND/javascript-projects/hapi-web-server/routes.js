@@ -38,6 +38,12 @@ const routes = [
         path: '/user/{name?}',
         handler: (request, h) => {
             const { name = "Stranger"} = request.params;
+            const { lang } = request.query;
+
+            if( lang == 'id'){
+                return `Hai, ${name}`;
+            }
+
             return `Hello, ${name}!`;
         },
     },

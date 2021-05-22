@@ -4,14 +4,16 @@ const routes = [
         method: 'GET',
         path: '/',
         handler: (request, h) => {
-            return 'Homepage';
+            return h.response('Homepage')
+                    .code(200);
         },
     },
     {
         method: '*',
         path: '/',
         handler: (request, h) => {
-            return 'Halaman ini tidak dapat diakses dengan method tersebut';
+            return h.response('Halaman ini tidak dapat diakses dengan method tersebut')
+                    .code(400);
         },
     },
 
@@ -20,14 +22,16 @@ const routes = [
         method: 'GET',
         path: '/about',
         handler: (request, h) =>{
-            return 'About Page';
+            return h.response('About Page')
+                    .code(200);
         },
     },
     {
         method: '*',
         path: '/about',
         handler: (request, h) =>{
-            return 'Halaman ini tidak dapat diakses dengan method tersebut';
+            return h.response('Halaman ini tidak dapat diakses dengan method tersebut')
+                    .code(400);
         },
 
     },
@@ -41,10 +45,12 @@ const routes = [
             const { lang } = request.query;
 
             if( lang == 'id'){
-                return `Hai, ${name}`;
+                return h.response(`Hai, ${name}`)
+                        .code(201);
             }
 
-            return `Hello, ${name}!`;
+            return h.response(`Hello, ${name}!`)
+                    .code(201);
         },
     },
 
@@ -53,7 +59,8 @@ const routes = [
         method: '*',
         path: '/{any*}',
         handler: (request, h) => {
-            return 'Halaman tidak ditemukan';
+            return h.response('Halaman tidak ditemukan')
+                    .code(404);
         },
     },
 ];

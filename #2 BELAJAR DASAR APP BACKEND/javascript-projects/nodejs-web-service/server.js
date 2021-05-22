@@ -10,10 +10,14 @@ const requestListener = (request, response) => {
     if(url == '/'){
         if(method == 'GET'){
             response.statusCode = 200;
-            response.end('<h1>Ini adalah HomePage</h1>');
+            response.end(JSON.stringify({
+                message: 'Ini Halaman Homepage!',
+            }));
         } else {
             response.statusCode = 400;
-            response.end(`<h1> Halaman tidak dapat diakses dengan ${method} request</h1>`);
+            response.end(JSON.stringify({
+                message: ` Halaman tidak dapat diakses dengan ${method} request`,
+            }));
         }
     } else if (url == '/about'){
         if(method == 'POST'){
@@ -27,18 +31,26 @@ const requestListener = (request, response) => {
             request.on('end', () => {
                 body = Buffer.concat(body).toString();
                 const {name} = JSON.parse(body);
-                response.end(`<h1> Hai, ${name}! ini adalah halaman about</h1>`);
+                response.end(JSON.stringify({
+                    message : `Hai, ${name}! ini adalah halaman about`,
+                }));
             });
         } else if( method == 'GET'){
             response.statusCode = 200;
-            response.end('<h1> Halo! Ini adalah halaman about</h1>');
+            response.end(JSON.stringify({
+                message: 'Halo! Ini adalah halaman about',
+            }));
         } else {
             response.statusCode = 400;
-            response.end(`<h1> Halaman ini tidak dapat diakses dengan ${method} request`);
+            response.end(JSON.stringify({
+                message: `Halaman ini tidak dapat diakses dengan ${method} request`,
+            }));
         }
     } else {
         response.statusCode = 404;
-        response.end('<h1> Halaman tidak ditemukan</h1>');
+        response.end(JSON.stringify({
+            message : 'Halaman tidak ditemukan',
+        }));
     }
 };
 

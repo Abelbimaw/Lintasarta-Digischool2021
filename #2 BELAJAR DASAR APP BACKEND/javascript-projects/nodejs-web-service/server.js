@@ -8,19 +8,21 @@ const requestListener = (request, response) => {
 
     const { method } = request;
     if(method == 'POST'){
-        console.log('<h1>Hai POST</h1>');
+        let body = [];
+
+        request.on('data', (chunk) => {
+            body.push(chunk);
+        });
+
+        request.on('end', () => {
+            body = Buffer.concat(body).toString();
+            const {name} = JSON.parse(body);
+            response.end(`<h1> Hai, ${name}!</h1>`);
+        });
     }
     
-    if(method == 'PUT'){
-        console.log('<h1>Hai PUT</h1>');
-    }
-
     if(method == 'GET'){
         console.log('<h1>Hai GET</h1>');
-    }
-
-    if(method == 'DELETE'){
-        console.log('<h1>Hai DELETE</h1>');
     }
 };
 

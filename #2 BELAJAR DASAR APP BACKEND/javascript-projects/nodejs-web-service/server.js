@@ -1,7 +1,8 @@
 const http = require('http');
 
 const requestListener = (request, response) => {
-    response.setHeader('Content-Type','text/html');
+    response.setHeader('Content-Type','application/json');
+    response.setHeader('X-Powered-By','NodeJS');
     // response.end('<h1>Hello HTTP Server</h1>');
 
     const { url,method } = request;

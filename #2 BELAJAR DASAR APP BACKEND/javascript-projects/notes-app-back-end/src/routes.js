@@ -1,10 +1,10 @@
-const addNotesHandler = require('./handler');
+const { addNoteHandler } = require('./handler');
 
 const routes = [
   {
-    method: 'GET',
+    method: 'POST',
     path: '/notes',
-    handler: addNotesHandler,
+    handler: addNoteHandler,
   },
 ];
 
